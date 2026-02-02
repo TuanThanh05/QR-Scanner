@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kiểm tra sản phẩm chính hãng</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="app">
+  <header>
+    <h1>Kiểm tra sản phẩm chính hãng</h1>
+    <p>Quét mã QR trên sản phẩm để xác minh nguồn gốc</p>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section id="home" class="home">
+      <div class="camera-icon">📷</div>
+      <button class="btn btn-primary" onclick="startScan()">Quét mã QR</button>
+
+      <div class="manual-input">
+        <input type="text" id="manualCode" placeholder="Nhập mã thủ công" />
+        <button class="btn btn-secondary" onclick="checkManual()">Kiểm tra mã</button>
+      </div>
+    </section>
+
+    <!-- SCANNING -->
+    <section id="scanner" class="hidden">
+      <div class="scanner-box">
+        <div class="qr-frame"></div>
+      </div>
+      <div class="scan-hint">Đưa mã QR vào khung</div>
+      <button class="btn btn-secondary" onclick="goHome()">Hủy</button>
+    </section>
+
+    <!-- SUCCESS -->
+    <section id="success" class="hidden result">
+      <div class="result-icon success">✔</div>
+      <h2>Sản phẩm chính hãng</h2>
+      <p>Sản phẩm đã được xác thực</p>
+
+      <div class="info-box">
+        <div><span>Tên sản phẩm</span><strong>Nước uống X</strong></div>
+        <div><span>Nhà sản xuất</span><strong>Công ty A</strong></div>
+        <div><span>Mã</span><strong>QR-123456</strong></div>
+        <div><span>Trạng thái</span><strong>Lần quét đầu tiên</strong></div>
+      </div>
+
+      <button class="btn btn-primary" onclick="goHome()">Quét mã khác</button>
+    </section>
+
+    <!-- FAKE -->
+    <section id="fake" class="hidden result">
+      <div class="result-icon danger">⚠</div>
+      <h2>Nghi ngờ hàng giả</h2>
+      <p>Mã này đã được sử dụng nhiều lần</p>
+
+      <button class="btn btn-warning">Báo cáo nghi ngờ</button>
+      <button class="btn btn-secondary" onclick="goHome()">Quét mã khác</button>
+    </section>
+  </main>
+
+  <footer>
+    Không lưu dữ liệu cá nhân. Thông tin do nhà sản xuất cung cấp.
+  </footer>
+</div>
+
+<script>
+  function hideAll() {
+    document.querySelectorAll('main section').forEach(s => s.classList.add('hidden'));
+  }
+
+  function goHome() {
+    hideAll();
+    document.getElementById('home').classList.remove('hidden');
+  }
+
+  function startScan() {
+    hideAll();
+    document.getElementById('scanner').classList.remove('hidden');
+
+    setTimeout(() => {
+      const fake = Math.random() < 0.3;
+      hideAll();
+      document.getElementById(fake ? 'fake' : 'success').classList.remove('hidden');
+    }, 1500);
+  }
+
+  function checkManual() {
+    const code = document.getElementById('manualCode').value;
+    if (!code) return alert('Vui lòng nhập mã');
+
+    hideAll();
+    document.getElementById(code.endsWith('9') ? 'fake' : 'success').classList.remove('hidden');
+  }
+</script>
+
+</body>
+</html>
