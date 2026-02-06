@@ -8,13 +8,19 @@ body {
   color: #2a3b55;
 }
 
-/* Full web layout */
+
+
+/* Full web layout ...*/
 .web {
   min-height: 100vh;
   display: grid;
   place-items: center;
   padding: 40px;
 }
+
+
+
+/*comment to commit*/
 
 /* Main container like a web card */
 .panel {
