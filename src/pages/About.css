@@ -25,7 +25,7 @@ body {
 /* Main container like a web card */
 .panel {
   width: min(1100px, 92vw);
-  min-height: 680px;
+  min-height: 670px;
 
   background: linear-gradient(#f7f9ff, #edf2ff);
   border: 1px solid rgba(70, 110, 185, 0.22);
