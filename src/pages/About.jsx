@@ -17,6 +17,7 @@ export default function About() {
         </div>
 
         <div className="menu-area">
+            
           <button
             className="menu-btn"
             type="button"

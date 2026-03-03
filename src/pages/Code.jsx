@@ -31,7 +31,7 @@ export default function Code() {
 
             <div className={`dropdown-menu-custom ${open ? "show" : ""}`}>
               <Link to="/about" onClick={() => setOpen(false)}>About</Link>
-              <Link to="/code" onClick={() => setOpen(false)}>Code</Link>
+              <Link to="/" onClick={() => setOpen(false)}>Home</Link>
             </div>
           </div>
         </header>
